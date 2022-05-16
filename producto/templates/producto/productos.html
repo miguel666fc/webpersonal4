@@ -1,0 +1,56 @@
+<!--Se hace la ruta para que herede de la plantilla base.html-->
+{% extends "Appweb/base.html" %}
+
+<!--Que cargue todo lo que esta en la carpeta static-->
+{% load static  %}
+
+
+{% block content %}
+<div class="container">
+
+    <div style="float:right;">
+    
+        
+        {% include "carro/widget.html" %}
+
+        
+    
+    </div>
+
+ <div class="row">
+
+
+{% for producto in  producto %}
+<!-- Contenido prinicipal del home-->
+    
+ <div class="col-md-3">
+    <div class="card" style="width: 100%; margin: 6px; ">  <!--Aqui se acomoda el tamaño de  la tarjeta que alberga los productos-->
+                                                            <!--Aqui se acomda tambien la separacion entre tarjetas-->
+        <!--Aqui carga la imagen de cada producto que se va mostrar-->
+        <img src="{{producto.imagen.url}}"  class="card-img-top"> 
+
+        <div class="card-body" style="text-align:center;" > <!--Aqui se centra el texto que hay en los productos-->
+
+            <h7 class="card-title">{{producto.nombre_producto }}</h7>  <!--Aqui se muestra  nombre del producto-->
+            <p class="card-text">&nbsp;$ {{producto.precio_venta}}</p>         <!--Aqui se muestra el precio del producto-->
+
+
+        </div>
+        <!--Aqui creamos el boton de agregar el carrito-->
+        <div class="card-footer text-center">
+            <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
+
+        </div>
+    </div>
+
+ </div>
+{% endfor %}
+ </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
